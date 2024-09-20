@@ -2,15 +2,15 @@
 
 ### Запуск
 
-```
 Create an .env file like this in the root directory of your project:
 
+```
 TELEGRAM_BOT_TOKEN=...
 TELEGRAM_CHAT_ID=...
+```
 
 Change these parameters in the main to suit yourself:
 
-```
 ``` go
 const (
 	INTERVAL        = time.Second * 10
@@ -27,8 +27,7 @@ var urls = []string{
 }
 ```
 
-```
 Enter this command in a terminal running Docker:
-
+```
 docker-compose up --build
 ```
