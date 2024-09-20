@@ -1,6 +1,6 @@
 # goPingRobot
 
-### Запуск
+### Launch
 
 Create an .env file like this in the root directory of your project:
 
