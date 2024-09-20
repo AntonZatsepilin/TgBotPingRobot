@@ -4,7 +4,7 @@
 
 Create an .env file like this in the root directory of your project:
 
-```
+``` .env
 TELEGRAM_BOT_TOKEN=...
 TELEGRAM_CHAT_ID=...
 ```
