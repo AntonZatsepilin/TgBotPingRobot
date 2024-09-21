@@ -12,18 +12,13 @@ import (
 	"time"
 )
 
-const (
-	INTERVAL        = time.Second * 10
-	REQUEST_TIMEOUT = time.Second * 2
-	WORKERS_COUNT   = 3
-)
-
 var urls = []string{
 	"https://gb.com/AntonZatsepilin",
 	"https://vk.com/antoshka_zac",
 	"https://tlgg.ru/@zzwwmp",
 	"https://google.com/",
 	"https://golang.org/",
+	"https://gregorykogan.github.io/hangman-helper/",
 }
 
 func main() {
@@ -46,7 +41,18 @@ func main() {
 	telegram.Init(token, chatID)
 
 	results := make(chan workerpool.Result)
-	workerPool := workerpool.New(WORKERS_COUNT, REQUEST_TIMEOUT, results)
+
+	WORKERS_COUNT, err := strconv.Atoi(os.Getenv("WORKERS_COUNT"))
+	if err != nil {
+		log.Fatal("WORKERS_COUNT is not set")
+	}
+
+	REQUEST_TIMEOUT, err := strconv.Atoi(os.Getenv("REQUEST_TIMEOUT"))
+	if err != nil {
+		log.Fatal("REQUEST_TIMEOUT is not set")
+	}
+
+	workerPool := workerpool.New(WORKERS_COUNT, time.Duration(REQUEST_TIMEOUT)*time.Second, results)
 
 	workerPool.Init()
 
@@ -81,7 +87,12 @@ func generateJobs(wp *workerpool.Pool) {
 			wp.Push(workerpool.Job{URL: url})
 		}
 
-		time.Sleep(INTERVAL)
+		INTERVAL, err := strconv.Atoi(os.Getenv("INTERVAL"))
+		if err != nil {
+			log.Fatal("INTERVAL is not set")
+		}
+
+		time.Sleep(time.Duration(INTERVAL) * time.Second)
 	}
 
 }

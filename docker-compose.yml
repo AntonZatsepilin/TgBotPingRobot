@@ -8,5 +8,8 @@ services:
     environment:
       TELEGRAM_BOT_TOKEN: "${TELEGRAM_BOT_TOKEN}"
       TELEGRAM_CHAT_ID: "${TELEGRAM_CHAT_ID}"
+      INTERVAL: 10
+      REQUEST_TIMEOUT: 2
+      WORKERS_COUNT: 3
     ports:
       - "8080:8080" 
