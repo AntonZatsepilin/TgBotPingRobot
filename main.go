@@ -10,16 +10,18 @@ import (
 	"strconv"
 	"syscall"
 	"time"
+
+	"gopkg.in/yaml.v2"
 )
 
-var urls = []string{
-	"https://gb.com/AntonZatsepilin",
-	"https://vk.com/antoshka_zac",
-	"https://tlgg.ru/@zzwwmp",
-	"https://google.com/",
-	"https://golang.org/",
-	"https://gregorykogan.github.io/hangman-helper/",
-}
+// var urls = []string{
+// 	"https://gb.com/AntonZatsepilin",
+// 	"https://vk.com/antoshka_zac",
+// 	"https://tlgg.ru/@zzwwmp",
+// 	"https://google.com/",
+// 	"https://golang.org/",
+// 	"https://gregorykogan.github.io/hangman-helper/",
+// }
 
 func main() {
 
@@ -82,8 +84,21 @@ func proccessResults(results chan workerpool.Result) {
 }
 
 func generateJobs(wp *workerpool.Pool) {
+
+	links := make(map[string][]string)
+
+	yamlFile, err := os.ReadFile("links.yml")
+	if err != nil {
+		panic(err)
+	}
+
+	err = yaml.Unmarshal(yamlFile, &links)
+	if err != nil {
+		panic(err)
+	}
+
 	for {
-		for _, url := range urls {
+		for _, url := range links["links"] {
 			wp.Push(workerpool.Job{URL: url})
 		}
 
