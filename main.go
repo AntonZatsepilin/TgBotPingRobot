@@ -14,15 +14,6 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// var urls = []string{
-// 	"https://gb.com/AntonZatsepilin",
-// 	"https://vk.com/antoshka_zac",
-// 	"https://tlgg.ru/@zzwwmp",
-// 	"https://google.com/",
-// 	"https://golang.org/",
-// 	"https://gregorykogan.github.io/hangman-helper/",
-// }
-
 func main() {
 
 	token := os.Getenv("TELEGRAM_BOT_TOKEN")
