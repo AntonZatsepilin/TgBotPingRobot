@@ -1,4 +1,4 @@
-# goPingRobot
+# TgBotPingRobot
 
 ### Launch
 
