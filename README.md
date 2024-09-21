@@ -17,7 +17,7 @@ REQUEST_TIMEOUT: ...
 WORKERS_COUNT: ...
 ```
 
-Change these parameters in the links.yml to suit yourself:
+Add links in the links.yml to suit yourself:
 
 ``` yml
 links:
